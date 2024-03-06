@@ -19,13 +19,13 @@ SDK for L2 auction bidders.
 
 - **L2 RPC (TESTNET):**
   - Description: L2 Node RPC (Testnet)
-  - URL: `[https://holesky-api.securerpc.com/l2](https://holesky-api.securerpc.com/l2/)`
+  - URL: [https://holesky-api.securerpc.com/l2](https://holesky-api.securerpc.com/l2/)
   - Methods: eth_* 
   - ChainId: 42169
 
 - **Beta bundle RPC (Testnet):**
   - Description: Beta bundle submission RPC
-  - URL: `[https://holesky-api.securerpc.com/v2](https://holesky-api.securerpc.com/v2)`
+  - URL: [https://holesky-api.securerpc.com/v2](https://holesky-api.securerpc.com/v2)
   - Method: mev_sendBetaBundle
   - Parameters:
     - `txs`: List of txs as bundle e.g. [0x2323...,]
