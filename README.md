@@ -171,9 +171,7 @@ contract MockBidder {
 
 ## Bundler Examples
 
-2 example bundlers are given:
 - [Python bundler](https://github.com/MEV-Protocol/beta-bundles-py) - employs a deployed bidder contract for continuous automated bidding, while listening for auction close event, then submits the bundle
-- [Go bundler](https://github.com/manifoldfinance/auction-bidder) - uses a manual bidder before submitting bundles
 
 ## Contributing
 
