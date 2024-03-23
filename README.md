@@ -34,8 +34,9 @@ SDK for L2 auction bidders.
 
 ## Bundle JSON Requests and Responses
 
-```json
-// Example JSON request
+### Example JSON request
+
+```jsonc
 {
     "jsonrpc": "2.0",
     "method": "mev_sendBetaBundle",
@@ -47,8 +48,10 @@ SDK for L2 auction bidders.
     ],
     "id": 8
 }
+```
 
-// Example JSON response
+### Example JSON response
+```jsonc
 {
     'jsonrpc': '2.0',
     'id': 1,
@@ -59,7 +62,7 @@ SDK for L2 auction bidders.
 
 ## L1 Bridge
 
-Fund L2 address by sending eth to the bridge address.
+Fund L2 address by sending ETH to the bridge address.
 
 ### Deployed Address (Testnet)
 ```bash
@@ -86,6 +89,7 @@ SETTLEMENT="0x7Ac1A452B59114Fb1E67470720343A2e9AE18297"
 Only registered bidders can participate in the auction. Operators can onboard new bidders through the contract. 
 
 To check for bidderId when registered, call `IdMap` on the contract:
+
 ```solidity
 function IdMap(address bidder) external view returns (uint8 id);
 ```
@@ -135,12 +139,14 @@ After an auction is closed, bidders can query their bid results:
 
 A minimal viable bidder is provided below:
 ```solidity
-pragma solidity 0.8.20;
+/// SPDX-License-Identifier: UPL-1.0
+pragma solidity ^0.8.25;
 
 import {Auctioneer} from "github.com/manifoldfinance/auctioneer/Auctioneer.sol";
 import {SettlementHouse} from "github.com/manifoldfinance/auctioneer/SettlementHouse.sol";
 import {WETH} from "solmate/tokens/WETH.sol";
 
+/// @title MockBidder
 contract MockBidder {
     uint256[] public bids;
     Auctioneer auctioneer;
