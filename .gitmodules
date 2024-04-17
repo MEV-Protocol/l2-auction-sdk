@@ -1,0 +1,6 @@
+[submodule "open-bidder-contracts"]
+	path = open-bidder-contracts
+	url = https://github.com/MEV-Protocol/open-bidder-contracts
+[submodule "beta-bundles-py"]
+	path = beta-bundles-py
+	url = https://github.com/MEV-Protocol/beta-bundles-py

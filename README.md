@@ -80,8 +80,9 @@ WETH="0x4200000000000000000000000000000000000006"
 
 ### Deployed Addresses (Testnet)
 ```bash
-AUCTIONEER="0xD88e271AD39dAb4DEB0f7f9475d993ed4Bf5029b"
-SETTLEMENT="0x7Ac1A452B59114Fb1E67470720343A2e9AE18297"
+AUCTIONEER="0x10DeC79E201FE7b27b8c4A1524d9733727D60ea4"
+SETTLEMENT="0x46bb4fE80C04b5C28C761ADdd43FD10fFCcB57CE"
+ACCOUNTANT="0x6B5021E079a3941cac287a4F24F411B1Ee87222f"
 ```
 
 ### Registering a bidder
@@ -137,47 +138,11 @@ After an auction is closed, bidders can query their bid results:
 
 ## Bidder Contracts
 
-A minimal viable bidder is provided below:
-```solidity
-/// SPDX-License-Identifier: UPL-1.0
-pragma solidity ^0.8.25;
-
-import {Auctioneer} from "github.com/manifoldfinance/auctioneer/Auctioneer.sol";
-import {SettlementHouse} from "github.com/manifoldfinance/auctioneer/SettlementHouse.sol";
-import {WETH} from "solmate/tokens/WETH.sol";
-
-/// @title MockBidder
-contract MockBidder {
-    uint256[] public bids;
-    Auctioneer auctioneer;
-    SettlementHouse house;
-    WETH weth;
-
-    constructor(WETH _weth, address _auctioneer, address settlement) {
-        weth = _weth;
-        auctioneer = Auctioneer(_auctioneer);
-        house = SettlementHouse(settlement);
-        weth.approve(_auctioneer, type(uint256).max);
-    }
-
-    function setBids(uint256[] memory newBids) public {
-        bids = newBids;
-    }
-
-    function getBid(uint256) external view returns (uint256[] memory packedBids) {
-        return bids;
-    }
-
-    function submit(uint256 slot, uint256 amount, bytes32[] calldata hashes) external {
-        auctioneer.approve(address(house), slot, amount);
-        house.submitBundle(slot, amount, hashes);
-    }
-}
-```
+[Source code for a fully functional open bidder is provided](open-bidder-contracts/)
 
 ## Bundler Examples
 
-- [Python bundler](https://github.com/MEV-Protocol/beta-bundles-py) - employs a deployed bidder contract for continuous automated bidding, while listening for auction close event, then submits the bundle
+[Source code for a fully functional bundler is provided](beta-bundles-py/)
 
 ## Contributing
 
