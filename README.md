@@ -140,6 +140,12 @@ After an auction is closed, bidders can query their bid results:
 
 [Source code for a fully functional open bidder is provided](open-bidder-contracts/)
 
+## Send bundle after winning bid
+
+1. Use the `mev_sendBetaBundle` method to send the bundle to L1 RPC. The bundle will be stored in L1 RPC, and L1 RPC will return the `bundle hash`.
+2. Submit the `bundle hash` to the L2 contract (bidder contract). During this process, the bidder contract will call the `submitBundle` method of the `SettlementHouse` contract. The `submitBundle` in `SettlementHouse` will check and burn future Gas tokens.
+3. The block builder will query the bundle hash in the `SettlementHouse` contract. If a bundle in the bundle pool is in the `SettlementHouse` contract, it will be included in the beta block by the block builder.
+
 ## Bundler Examples
 
 [Source code for a fully functional bundler is provided](beta-bundles-py/)
